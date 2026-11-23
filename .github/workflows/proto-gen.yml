@@ -3,9 +3,8 @@ name: "Generate Protobuf Stubs"
 on:
   push:
     tags:
-      - 'v*' # Триггер срабатывает на пуш тегов вида v0.1.0, v1.2.3
+      - 'v*'
 
-# Обязательно даем токену права на запись, иначе git push упадет с 403 ошибкой
 permissions:
   contents: write
 
@@ -15,14 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        # Добавляй сюда новые сервисы по мере их появления
-        service: ["order"] 
+        service: ["order"]
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Нужно, чтобы видеть всю историю веток и тегов
+          fetch-depth: 0
 
       - name: Setup Go
         uses: actions/setup-go@v5
